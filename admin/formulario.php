@@ -1,7 +1,8 @@
 <?php
 $pregunta = new encuesta($data);
 $result = $pregunta->get();
-if ($result) {
+
+if ($result != false && $result->rowCount() > 0) {
     $data['action'] = 'update';
     $row = $result->fetch(PDO::FETCH_OBJ);
 } else {
@@ -41,7 +42,7 @@ if ($result) {
         while ($row = $result->fetch(PDO::FETCH_OBJ)) {
             ?>
             <div>
-                <span>(<?= $row->Id; ?>) <?= $row->pregunta; ?> </span><a href="index.php?action=edit&id=<?= $row->Id; ?>">Editar</a> | <a onclick="_delete(this)" id="<?= $row->Id; ?>" href="admin.php?action=delete&id=<?= $row->Id; ?>">Borrar</a>
+                <span>(<?= $row->Id; ?>) <?= $row->pregunta; ?> </span><a href="index.php?id=<?= $row->Id; ?>">Editar</a> | <a onclick="_delete(this)" id="<?= $row->Id; ?>" href="#">Borrar</a>
             </div>
             <?php
         }
@@ -52,7 +53,7 @@ if ($result) {
     function _delete(data) {
         var confirm = window.confirm("Borrar?");
         if (confirm == true) {
-            window.location.href = 'admin.php?action=delete&id=' + data.id;
+            window.location.href = 'index.php?action=delete&id=' + data.id;
         }
 
     }

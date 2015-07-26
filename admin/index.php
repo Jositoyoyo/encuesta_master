@@ -22,4 +22,3 @@ class admin {
 
 $admin = new admin();
 $admin->exec();
-

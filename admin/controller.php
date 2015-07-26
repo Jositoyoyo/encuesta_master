@@ -7,6 +7,7 @@ class controller {
     function __construct() {
         $data = isset($_REQUEST) ? $_REQUEST : '';
         switch (@$data['action']) {
+            //
             case 'insert':
                 $this->insert($data);
                 break;
@@ -16,6 +17,7 @@ class controller {
             case 'delete':
                 $this->delete($data);
                 break;
+            //
             default:
                 $this->view('formulario', $data);
                 break;
