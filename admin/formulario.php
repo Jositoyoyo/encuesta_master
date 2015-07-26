@@ -15,7 +15,7 @@ if ($result != false && $result->rowCount() > 0) {
     <h3>Introducir una nueva pregunta</h3>
 <?php } ?>
 <a href="index.php" style="float: right;">Nueva pregunta</a>
-<form action="admin.php" method="POST">
+<form action="index.php" method="POST">
     <input type="hidden" name="action" value="<?php echo $data['action']; ?>"/>
     <select name="navegador">
         <?php if ($data['action'] == 'update') { ?>
