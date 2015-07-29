@@ -1,7 +1,8 @@
 <?php
 
 include_once 'encuesta.php';
-/** 
+
+/**
  *
  * @category   modulos
  * @package    encuesta_master
@@ -12,9 +13,11 @@ include_once 'encuesta.php';
  * @since      Agosto 2015
  * 
  */
-class controller {
-    
-    function __construct() {
+class controller
+{
+
+    function __construct()
+    {
         $data = isset($_REQUEST) ? $_REQUEST : '';
         switch (@$data['action']) {
             //
@@ -33,8 +36,13 @@ class controller {
                 break;
         }
     }
-    
-    function insert($data) {
+    /**
+     * Insertar Datos en BD
+     * @param array $data
+     * @return boolean
+     */
+    function insert($data)
+    {
         $pregunta = new encuesta($data);
         if ($pregunta->insert() != '0') {
             echo 'Exito al insertar los datos';
@@ -46,19 +54,22 @@ class controller {
         }
     }
 
-    function delete($data) {
+    function delete($data) 
+    {
         $pregunta = new encuesta($data);
         $pregunta->delete();
         $this->view('formulario', null);
     }
 
-    function update($data) {
+    function update($data) 
+    {
         $pregunta = new encuesta($data);
         $pregunta->update();
         $this->view('formulario', null);
     }
 
-    function view($plantilla, $data = null) {
+    function view($plantilla, $data = null) 
+    {
         include_once $plantilla . '.php';
     }
 
