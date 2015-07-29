@@ -1,7 +1,20 @@
 <?php
-include_once '../common/connectPDO.php';
+class connectPDO {
 
-class encuesta extends connectPDO {
+    static function connect() {
+        try {
+            $PDO = new PDO('mysql:dbname=banco;host=localhost', 'root', 'jositoyoyo');
+            return($PDO);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+}
+
+class encuesta extends connectPDO 
+{
     
     private $Id;
     private $navegador;
@@ -36,12 +49,14 @@ class encuesta extends connectPDO {
      * 
      * @return array object
      */
-    public function find() {
+    public function find()
+    {
         $pdo = connectPDO::connect();
         $result = $pdo->query("SELECT * FROM preguntas LIMIT 0, 30");
         return($result);
     }
-    function get() {
+    function get() 
+    {
         $pdo = connectPDO::connect();
         $result = $pdo->query("SELECT * FROM preguntas WHERE Id=$this->Id");
         return($result);
