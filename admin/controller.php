@@ -1,9 +1,19 @@
 <?php
 
 include_once 'encuesta.php';
-
+/** 
+ *
+ * @category   modulos
+ * @package    encuesta_master
+ * @copyright  Copyright (c) 2015 Jositoyoyo Technologies Spain Inc. 
+ * @license    BSD License
+ * @version    Release: 1.0
+ * @link       
+ * @since      Agosto 2015
+ * 
+ */
 class controller {
-
+    
     function __construct() {
         $data = isset($_REQUEST) ? $_REQUEST : '';
         switch (@$data['action']) {
@@ -23,7 +33,7 @@ class controller {
                 break;
         }
     }
-
+    
     function insert($data) {
         $pregunta = new encuesta($data);
         if ($pregunta->insert() != '0') {
@@ -32,6 +42,7 @@ class controller {
         } else {
             echo 'Fallo al insertar los datos';
             $this->view('formulario', null);
+            return false;
         }
     }
 
